@@ -1,5 +1,5 @@
 const mainContainer = document.getElementById('main-container');
-let children = [["Илья", "Коньки с клюшкой"], ["Максим", "Новый телефон"]];
+let children = [["Илья", "Коньки с клюшкой"], ["Максим", "Зачёт по геометрии и физике"]];
 let inputName = document.getElementById('inputName');
 let inputWant = document.getElementById('inputWant');
 
