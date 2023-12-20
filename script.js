@@ -3,7 +3,7 @@ let children = [["Илья", "Коньки с клюшкой"], ["Максим",
 let inputName = document.getElementById('inputName');
 let inputWant = document.getElementById('inputWant');
 
-const resetMainContainer = () => {
+const displayHeroes = () => {
     mainContainer.innerHTML = "";
 
     for (let i = 0; i < children.length; i++) {
@@ -35,12 +35,13 @@ const addChild = () => {
         return;
     }
 
-    children.push([inputName.value, inputWant.value]);
+    let newChild = [inputName.value, inputWant.value]
+    children.push(newChild);
     inputName.value = "";
     inputWant.value = "";
 
-    resetMainContainer();
+    displayHeroes();
 }
 
 document.getElementById('buttonAdd').addEventListener("click", addChild);
-resetMainContainer();
+displayHeroes();
