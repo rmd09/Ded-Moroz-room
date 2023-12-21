@@ -18,6 +18,7 @@ body{
     background-repeat: repeat-y;
     background-color: #DDF9FF;
     background-attachment: fixed;
+    margin-bottom: 20px;
 }
 
 header{
