@@ -1,19 +1,38 @@
-const mainContainer = document.getElementById('main-container');
-let children = [["Илья", "Коньки с клюшкой"], ["Максим", "Зачёт по геометрии и физике"]];
-let inputName = document.getElementById('inputName');
-let inputWant = document.getElementById('inputWant');
+const DATA_ROUTE = "http://localhost:3000/children";
 
-const displayHeroes = () => {
+const mainContainer = document.getElementById('main-container');
+const inputName = document.getElementById('inputName');
+const inputWant = document.getElementById('inputWant');
+
+const getData = async () => {
+    try {
+        const response = await fetch(DATA_ROUTE);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        alert("Технические неполадки");
+    }
+}
+
+const displayHeroes = (data) => {
     mainContainer.innerHTML = "";
 
-    for (let i = 0; i < children.length; i++) {
-        let newElement = document.createElement("div")
-        if (i === children.length - 1) {
-            newElement.innerHTML = `<div id="for-animation" class="card"><div class="name-container"><h3 class="name">Имя:</h3><h3 class="name-value">${children[i][0]}</h3></div><div class="want-container"><h3 class="want">Пожелания:</h3><p class="want-value">${children[i][1]}</p></div></div>`;
-        }
-        else {
-            newElement.innerHTML = `<div class="card"><div class="name-container"><h3 class="name">Имя:</h3><h3 class="name-value">${children[i][0]}</h3></div><div class="want-container"><h3 class="want">Пожелания:</h3><p class="want-value">${children[i][1]}</p></div></div>`;
-        }
+    for (let i = 0; i < data.length; i++) {
+        let newElement = document.createElement("div");
+        
+        newElement.innerHTML = `
+            <div ${i === data.length - 1 ? "id=\"for-animation\"" : ""} class="card">
+                <div class="name-container">
+                    <h3 class="name">Имя:</h3>
+                    <h3 class="name-value">${data[i].name}</h3>
+                </div>
+                <div class="want-container">
+                    <h3 class="want">Пожелания:</h3>
+                    <p class="want-value">${data[i].wish}</p>
+                </div>
+            </div>`
+
         mainContainer.appendChild(newElement);
     }
 }
@@ -44,4 +63,5 @@ const addChild = () => {
 }
 
 document.getElementById('buttonAdd').addEventListener("click", addChild);
-displayHeroes();
+
+getData().then(displayHeroes);
