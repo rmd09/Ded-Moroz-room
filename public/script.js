@@ -36,7 +36,7 @@ const displayHeroes = (data) => {
         mainContainer.appendChild(newElement);
     }
 }
-const addChild = () => {
+const addChild = async () => {
     if (inputName.value === ""){
         alert("Вы не ввели имя!");
         return;
@@ -54,12 +54,18 @@ const addChild = () => {
         return;
     }
 
-    let newChild = [inputName.value, inputWant.value]
-    children.push(newChild);
+    const newChild = {name: inputName.value, wish: inputWant.value};
+    const response = await fetch("http://localhost:3000/children", {
+        method: "POST",
+        headers: {"Content-Type": "application/json;charset=utf-8"},
+        body: JSON.stringify(newChild)
+    });
+    const updatedData = await response.json();
+
     inputName.value = "";
     inputWant.value = "";
 
-    displayHeroes();
+    displayHeroes(updatedData);
 }
 
 document.getElementById('buttonAdd').addEventListener("click", addChild);

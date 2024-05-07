@@ -1,5 +1,6 @@
-const sendAllChildren = require("./children");
+const { sendAllChildren, sendChildrenUpdated } = require("./children");
 
 module.exports = {
-    sendAllChildren
+    sendAllChildren,
+    sendChildrenUpdated
 }
