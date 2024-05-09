@@ -3,6 +3,8 @@ const DATA_ROUTE = "http://localhost:3000/children";
 const mainContainer = document.getElementById('main-container');
 const inputName = document.getElementById('inputName');
 const inputWant = document.getElementById('inputWant');
+const comment = document.getElementById('comment');
+const button = document.getElementById('button');
 
 const getData = async () => {
     try {
@@ -35,22 +37,37 @@ const displayHeroes = (data) => {
 
         mainContainer.appendChild(newElement);
     }
+
+    if (data.length === 0) {
+        let newElement = document.createElement("div");
+        
+        newElement.innerHTML = `
+            <h2 class="title2">Здесь пока ничего нет. Создай!</h2>
+            <div class="card example">
+                <div class="name-container">
+                    <h3 class="name">Имя:</h3>
+                    <h3 class="name-value">Имя</h3>
+                </div>
+                <div class="want-container">
+                    <h3 class="want">Пожелания:</h3>
+                    <p class="want-value">Пожелание</p>
+                </div>
+            </div>`
+
+        mainContainer.appendChild(newElement);
+    }
 }
 const addChild = async () => {
-    if (inputName.value === ""){
-        alert("Вы не ввели имя!");
-        return;
-    }
-    else if (inputWant.value === "") {
-        alert("Вы не ввели пожелание!");
+    if (inputName.value === "" || inputWant.value === ""){
+        showComment("Заполните все поля!");
         return;
     }
     else if (inputName.value.length > 11) {
-        alert("Имя слишком большое!");
+        showComment("Имя слишком большое!");
         return;
     }
     else if (inputWant.value.length > 50) {
-        alert("Пожелание слишком большое!");
+        showComment("Пожелание слишком большое!");
         return;
     }
 
@@ -68,6 +85,16 @@ const addChild = async () => {
     displayHeroes(updatedData);
 }
 
-document.getElementById('buttonAdd').addEventListener("click", addChild);
+const showComment = text => {
+    comment.innerHTML = `<h3 class="comments">${text}</h3>`;
+    button.disabled = true;
+
+    setTimeout(() => {
+        comment.innerHTML = "";
+        button.disabled = false;
+    }, 2000)
+}
+
+button.addEventListener("click", addChild);
 
 getData().then(displayHeroes);

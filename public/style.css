@@ -60,12 +60,33 @@ header{
     padding: 10px 20px;
     border-radius: 30px;
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: background ease-in-out 0s 200s;
     transition: all ease-in-out 200ms;
 }
 .button:hover{
     cursor: pointer;
     transform: translateY(-5px);
     box-shadow: 2px 10px 10px 0px rgba(0, 0, 0, 0.25);
+}
+.button:active {
+    background: #ff8e8e;
+    transition: 0s;
+
+    cursor: alias;
+    transform: none; /* Отменяем все стили hover*/
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.button:disabled {
+    color: #000;
+    background: #FF4A4A;
+
+    cursor: alias;
+    transform: none; /* Отменяем все стили hover*/
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.comments {
+    margin-bottom: 10px;
 }
 
 main{
@@ -76,6 +97,12 @@ main{
 .title{
     font-size: 40px;
     margin: 10px 0 50px 0;
+}
+.title2 {
+    width: 228px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-wrap: wrap;
 }
 .main-container{
     display: flex;
@@ -90,7 +117,17 @@ main{
     background:#FF4A4A;
     border-radius: 31px;
     border: #000 solid 1px;
+    transition: all ease-in-out 300ms;
 }
+.card:hover {
+    transform: translateY(-20px) scale(1.1);
+    box-shadow: 2px 10px 10px 0px rgba(0, 0, 0, 0.35);
+}
+.example {
+    /* color: #484848 !important; */
+    opacity: 0.6;
+}
+
 .name-container{
     display: flex;
     border-bottom: #000 solid 1px;
@@ -151,10 +188,21 @@ main{
         font-size: 22px;
         padding: 7px 15px;
     }
-    
+    .button:hover {
+        cursor: alias;
+        transform: none; /* Отменяем все стили */
+        box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
     .title{
         font-size: 25px;
         margin: 10px 0 25px 0;
+    }
+    .title2 {
+        width: 150px;
+        font-size: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+        text-wrap: wrap;
     }
     .main-container{
         gap: 17px;
@@ -162,6 +210,10 @@ main{
     .card{
         width: 150px;
         height: 130px;
+    }
+    .card:hover {
+        transform: none;
+        box-shadow: none;
     }
     .name-container{
         gap: 12px;
@@ -188,7 +240,7 @@ main{
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) and (hover: none) and (pointer: coarse) {
     .logo{
         width: 300px;
         height: 65px;
@@ -218,10 +270,22 @@ main{
         font-size: 22px;
         padding: 7px 15px;
     }
+    .button:hover {
+        cursor: alias;
+        transform: none; /* Отменяем все стили */
+        box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
     
     .title{
         font-size: 25px;
         margin: 10px 0 25px 0;
+    }
+    .title2 {
+        font-size: 20px;
+        width: 150px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-wrap: wrap;
     }
     .main-container{
         gap: 17px;
@@ -229,6 +293,10 @@ main{
     .card{
         width: 150px;
         height: 130px;
+    }
+    .card:hover {
+        transform: none;
+        box-shadow: none;
     }
     .name-container{
         gap: 12px;
