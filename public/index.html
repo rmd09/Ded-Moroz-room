@@ -25,6 +25,23 @@
         </section>
     </main>
 
+    <!-- Popup -->
+    <div id="popup__back" class="popup__back-none"></div>
+    <div id="popup__container" class="popup__back-none">
+        <form id="form" class="popup__form">
+            <div class="addChild">
+                <h2 class="addChild-h">Редактирование</h2>
+                <input type="text" class="input" id="inputName" placeholder="Имя">
+                <input type="text" class="input" id="inputWant" placeholder="Пожелания">
+                <div id="comment"></div>
+                <button id="popup__sunmit" class="button" type="submit">Добавить</button>
+                <button id="popup__delete" class="button popup__delete">Удалить</button>
+            </div>
+        </form>
+        <span id="popup__x" class="popup__x">x</span>
+    </div>
+
     <script src="script.js"></script>
+    <script src="submit.js"></script>
 </body>
 </html>

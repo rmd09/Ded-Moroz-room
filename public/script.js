@@ -62,18 +62,18 @@ const addChild = async () => {
         showComment("Заполните все поля!");
         return;
     }
-    else if (inputName.value.length > 11) {
+    else if (inputName.value.length > 20) {
         showComment("Имя слишком большое!");
         return;
     }
-    else if (inputWant.value.length > 50) {
+    else if (inputWant.value.length > 100) {
         showComment("Пожелание слишком большое!");
         return;
     }
 
     const newChild = {name: inputName.value, wish: inputWant.value};
-    const response = await fetch("http://localhost:3000/children", {
-        method: "POST",
+    const response = await fetch(DATA_ROUTE, {
+        method: "PUT",
         headers: {"Content-Type": "application/json;charset=utf-8"},
         body: JSON.stringify(newChild)
     });

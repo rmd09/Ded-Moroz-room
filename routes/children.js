@@ -4,6 +4,6 @@ const { sendAllChildren, sendChildrenUpdated } = require("../controllers");
 
 childrenRouter.get("/children", findAllChildren, sendAllChildren);
 
-childrenRouter.post("/children", findAllChildren, addChild, sendChildrenUpdated);
+childrenRouter.put("/children", findAllChildren, addChild, sendChildrenUpdated);
 
 module.exports = childrenRouter;
