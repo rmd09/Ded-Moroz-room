@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const { mainRouter, childrenRouter } = require("./routes");
+const { mainRouter } = require("./routes");
 const { cors } = require("./middlewares");
 
 const PORT = 3000;
@@ -13,8 +13,7 @@ app.use(
     cors,
     bodyParser.json(),
     express.static(path.join(__dirname, "public")),
-    mainRouter,
-    childrenRouter
+    mainRouter
 );
 
 app.listen(PORT, () => {

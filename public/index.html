@@ -14,8 +14,7 @@
             <h2 class="addChild-h">Добавить ребёнка</h2>
             <input type="text" class="input" id="inputName" placeholder="Имя">
             <input type="text" class="input" id="inputWant" placeholder="Пожелания">
-            <div id="comment"></div>
-            <button id="button" class="button" id="buttonAdd">Добавить</button>
+            <button class="button" id="buttonAdd">Добавить</button>
         </div>
     </header>
     <main>
@@ -25,23 +24,6 @@
         </section>
     </main>
 
-    <!-- Popup -->
-    <div id="popup__back" class="popup__back-none"></div>
-    <div id="popup__container" class="popup__back-none">
-        <form id="form" class="popup__form">
-            <div class="addChild">
-                <h2 class="addChild-h">Редактирование</h2>
-                <input type="text" class="input" id="popup-inputName" placeholder="Имя">
-                <input type="text" class="input" id="popup-inputWant" placeholder="Пожелания">
-                <div id="comment"></div>
-                <button id="popup__sunmit" class="button" type="submit">Редактировать</button>
-                <button id="popup__delete" class="button popup__delete" type="button">Удалить</button>
-            </div>
-        </form>
-        <span id="popup__x" class="popup__x"><img src="img/cross.svg" alt="x"></span>
-    </div>
-
-    <script src="main.js"></script>
-    <script src="submit.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
