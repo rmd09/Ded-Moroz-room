@@ -127,6 +127,7 @@ main{
 .example {
     /* color: #484848 !important; */
     opacity: 0.6;
+    cursor: auto !important;
 }
 
 .name-container{

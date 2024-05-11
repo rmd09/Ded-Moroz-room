@@ -1,5 +1,3 @@
-var children;
-
 const DATA_ROUTE = "http://localhost:3000/children";
 
 const mainContainer = document.getElementById('main-container');
@@ -17,16 +15,15 @@ const getData = async () => {
         console.log(error);
     }
 }
-const updateCardsEvents = () => {
-    children.forEach(child => {
+const updateCardsEvents = (data) => {
+    data.forEach(child => {
         document.getElementById(`card${child.id}`).addEventListener("click", () => openPopup(child.id));
     });
 }
 
 getData().then(data => {
-    children = data;
     displayHeroes(data);
-    updateCardsEvents();
+    updateCardsEvents(data);
 });
 
 const displayHeroes = (data) => {
@@ -90,19 +87,11 @@ const addChild = () => {
 }
 
 const createNewChild = async (name, wish) => {
-    let maxId = 0;
-    children.forEach(item => {
-        if (item.id > maxId) {
-            maxId = item.id;
-        }
-    });
-
     const newChild = {
-        id: maxId + 1,
+        id: -1, //Определяется на сервере
         name: name,
         wish: wish
     };
-    children.push(newChild);
 
     const response = await fetch(DATA_ROUTE, {
         method: "PUT",
@@ -112,7 +101,7 @@ const createNewChild = async (name, wish) => {
     const updatedData = await response.json();
 
     displayHeroes(updatedData);
-    updateCardsEvents();
+    updateCardsEvents(updatedData);
 }
 
 const showComment = text => {
