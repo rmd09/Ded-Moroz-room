@@ -1,3 +1,5 @@
+var children;
+
 const DATA_ROUTE = "http://localhost:3000/children";
 
 const mainContainer = document.getElementById('main-container');
@@ -13,9 +15,19 @@ const getData = async () => {
         return data;
     } catch (error) {
         console.log(error);
-        alert("Технические неполадки");
     }
 }
+const updateCardsEvents = () => {
+    children.forEach(child => {
+        document.getElementById(`card${child.id}`).addEventListener("click", () => openPopup(child.id));
+    });
+}
+
+getData().then(data => {
+    children = data;
+    displayHeroes(data);
+    updateCardsEvents();
+});
 
 const displayHeroes = (data) => {
     mainContainer.innerHTML = "";
@@ -24,7 +36,7 @@ const displayHeroes = (data) => {
         let newElement = document.createElement("div");
         
         newElement.innerHTML = `
-            <div ${i === data.length - 1 ? "id=\"for-animation\"" : ""} class="card">
+            <div id="card${data[i].id}" class="card">
                 <div class="name-container">
                     <h3 class="name">Имя:</h3>
                     <h3 class="name-value">${data[i].name}</h3>
@@ -57,7 +69,7 @@ const displayHeroes = (data) => {
         mainContainer.appendChild(newElement);
     }
 }
-const addChild = async () => {
+const addChild = () => {
     if (inputName.value === "" || inputWant.value === ""){
         showComment("Заполните все поля!");
         return;
@@ -71,7 +83,27 @@ const addChild = async () => {
         return;
     }
 
-    const newChild = {name: inputName.value, wish: inputWant.value};
+    createNewChild(inputName.value, inputWant.value);
+    
+    inputName.value = "";
+    inputWant.value = "";
+}
+
+const createNewChild = async (name, wish) => {
+    let maxId = 0;
+    children.forEach(item => {
+        if (item.id > maxId) {
+            maxId = item.id;
+        }
+    });
+
+    const newChild = {
+        id: maxId + 1,
+        name: name,
+        wish: wish
+    };
+    children.push(newChild);
+
     const response = await fetch(DATA_ROUTE, {
         method: "PUT",
         headers: {"Content-Type": "application/json;charset=utf-8"},
@@ -79,10 +111,8 @@ const addChild = async () => {
     });
     const updatedData = await response.json();
 
-    inputName.value = "";
-    inputWant.value = "";
-
     displayHeroes(updatedData);
+    updateCardsEvents();
 }
 
 const showComment = text => {
@@ -95,6 +125,5 @@ const showComment = text => {
     }, 2000)
 }
 
-button.addEventListener("click", addChild);
 
-getData().then(displayHeroes);
+button.addEventListener("click", addChild);

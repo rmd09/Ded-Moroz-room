@@ -120,6 +120,7 @@ main{
     transition: all ease-in-out 300ms;
 }
 .card:hover {
+    cursor: pointer;
     transform: translateY(-20px) scale(1.1);
     box-shadow: 2px 10px 10px 0px rgba(0, 0, 0, 0.35);
 }
@@ -184,7 +185,8 @@ main{
 }
 .popup__container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -196,12 +198,10 @@ main{
     background-repeat: repeat-y;
     background-attachment: fixed;
     border-radius: 30px;
-    width: 721px;
-    height: 478px;
-    margin: auto;
+    width: 45%;
+    height: 55%;
 }
 .popup__form{
-    margin-left: 220px;
     margin-top: 40px;
 }
 .popup__delete{
@@ -226,6 +226,9 @@ main{
     transition: 0s;
 }
 .popup__x{
+    position: absolute;
+    top: 5px;
+    right: 5px;
     height: 30px;
     font-family: monospace;
     color: #000;
@@ -265,7 +268,7 @@ main{
         padding: 7px 15px;
     }
     .button:hover {
-        cursor: alias;
+        cursor: pointer;
         transform: none; /* Отменяем все стили */
         box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
@@ -347,7 +350,7 @@ main{
         padding: 7px 15px;
     }
     .button:hover {
-        cursor: alias;
+        cursor: auto;
         transform: none; /* Отменяем все стили */
         box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
@@ -396,5 +399,13 @@ main{
         width: 150px;
         height: 30px;
         font-size: 13px;
+    }
+
+    .popup__container {
+        width: 55%;
+        height: 40%;
+    }
+    .popup__form {
+        transform: scale(0.9);
     }
 }
