@@ -12,7 +12,6 @@ async function findAllChildren(req, res, next) {
 async function addChild(req, res, next) {
     const data = req.children;
     data.push(req.body);
-    console.log("addChild");
 
     try {
         await setData(data);
